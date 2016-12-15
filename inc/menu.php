@@ -23,13 +23,9 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-exclamation-triangle"></i> Riesgos <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="crear-riesgo.php"><i class="fa fa-download"></i> Crear nuevo riesgo</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="listar-riesgos.php"><i class="fa fa-list-ul"></i> Listar riesgos</a></li>
           </ul>
         </li>
         <li><a href="informes.php"><i class="fa fa-file-text-o"></i> Informes</a></li>
