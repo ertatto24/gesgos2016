@@ -14,7 +14,7 @@
 			<ol class="breadcrumb">
 			  <li><a href="index.php">Inicio</a></li>
 			  <li><a href="#">Proyectos</a></li>
-			  <li><a href="#">Crear nuevo proyecto</a></li>
+			  <li><a href="#">Listar proyectos</a></li>
 			  <span class="pull-right"><?php getFecha(); ?></span>
 			</ol>
 
@@ -33,47 +33,28 @@
 								</tr>
 							</thead>
 						<tbody>
-							<tr>
-								<td>
-									#1
-								</td>
-								<td>
-									nombre proyecto 11
-								</td>
-								<td>
-									<a class="btn btn-info btn-xs" href="#" data-id="1" class="abrirProyecto"><i class="fa fa-folder-open-o"></i> Abrir proyecto</a>
-									<a class="btn btn-warning btn-xs" href="#" data-id="1" class="modificarProyecto"><i class="fa fa-pencil-square-o"></i> Modificar proyecto</a>
-									<a class="btn btn-danger btn-xs" href="#" data-id="1" class="borrarProyecto"><i class="fa fa-eraser"></i> Borrar proyecto</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									#1
-								</td>
-								<td>
-									nombre proyecto 11
-								</td>
-								<td>
-									<a class="btn btn-info btn-xs" href="#"><i class="fa fa-folder-open-o"></i> Abrir proyecto</a>
-									<a class="btn btn-warning btn-xs" href="#"><i class="fa fa-pencil-square-o"></i> Modificar proyecto</a>
-									<a class="btn btn-danger btn-xs" href="#"><i class="fa fa-eraser"></i> Borrar proyecto</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									#1
-								</td>
-								<td>
-									nombre proyecto 33
-								</td>
-								<td>
-									<a class="btn btn-info btn-xs" href="#"><i class="fa fa-folder-open-o"></i> Abrir proyecto</a>
-									<a class="btn btn-warning btn-xs" href="#"><i class="fa fa-pencil-square-o"></i> Modificar proyecto</a>
-									<a class="btn btn-danger btn-xs" href="#"><i class="fa fa-eraser"></i> Borrar proyecto</a>
-								</td>
-							</tr>
 
-						<?php //getListadoServiciosFranquicia($_SESSION['franquicia']); ?>
+							<?php
+
+							require 'sys/conexion.php';
+							$db = getConexion();
+
+							$stmt = $db->prepare("SELECT id, nombre FROM proyecto");
+							$stmt->execute();
+							$proyecto = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+							$mensaje = "";
+
+							foreach ($proyecto as $p) {
+								$mensaje .= "<tr><td>#".$p['id']."</td><td>".$p['nombre']."</td>";
+								$mensaje .= "<td><a class='btn btn-info btn-xs' href='abrir-proyecto.php?id=".$p['id']."' data-id='".$p['id']."'><i class='fa fa-folder-open-o'></i> Abrir</a>";
+								$mensaje .= " <a class='btn btn-warning btn-xs' href='#' data-id='".$p['id']."'><i class='fa fa-pencil-square-o'></i> Modificar</a>";
+								$mensaje .= " <a class='btn btn-danger btn-xs' href='#' data-id='".$p['id']."'><i class='fa fa-eraser'></i> Borrar</a></td></tr>";
+							}
+
+							echo $mensaje;
+
+							?>
 
 						</tbody>
 							<tfoot>

@@ -11,6 +11,7 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <?php if (isset($_SESSION['usuario'])) { ?>
       <ul class="nav navbar-nav">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-tasks"></i> Proyectos <span class="caret"></span></a>
@@ -30,17 +31,21 @@
         </li>
         <li><a href="informes.php"><i class="fa fa-file-text-o"></i> Informes</a></li>
       </ul>
+      <?php } ?>
 
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gears"></i> <span class="caret"></span></a>
           <ul class="dropdown-menu">
+          	<?php if (!isset($_SESSION['usuario'])) { ?>
             <li><a href="#" data-toggle="modal" data-target="#entrar"><i class="fa fa-sign-in"></i> Entrar</a></li>
             <li><a href="#" data-toggle="modal" data-target="#registrar"><i class="fa fa-sign-out"></i> Registrarse</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#"><i class="fa fa-key"></i> Recuperar contraseña</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#"><i class="fa fa-power-off"></i> Salir</a></li>
+            <?php } else { ?>
+            <li><a href=""><i class="fa fa-user"></i> <?php echo $_SESSION['nombre']; ?></a></li>
+            <li><a href="ctl/ctl.salir.php"><i class="fa fa-power-off"></i> Salir</a></li>
+            <?php } ?>
           </ul>
         </li>
       </ul>
@@ -52,8 +57,8 @@
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Entrar al sistema</h4>
 		      </div>
+		      <form action="ctl/ctl.entrar.php" method="post">
 		      <div class="modal-body">
-		      	<form>
 				  <div class="form-group">
 				    <label for="usuario">Usuario</label>
 				    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario">
@@ -62,12 +67,12 @@
 				    <label for="clave">Clave</label>
 				    <input type="password" class="form-control" name="clave" id="clave" placeholder="Clave">
 				  </div>
-				</form>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 		        <button type="submit" class="btn btn-warning pull-right">Entrar</button>
 		      </div>
+		      </form>
 		    </div>
 		  </div>
 		</div>
@@ -79,8 +84,8 @@
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Registrarse en el sistema</h4>
 		      </div>
+		      <form action="ctl/ctl.registrar.php" method="post">
 		      <div class="modal-body">
-		      	<form>
 		      		<div class="form-group">
 				    <label for="usuario">Usuario</label>
 				    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario">
@@ -93,16 +98,16 @@
 				    <label for="clave">Clave</label>
 				    <input type="password" class="form-control" name="clave" id="clave" placeholder="Clave">
 				  </div>
-				  <div class="form-group">
+				  <!--<div class="form-group">
 				    <label for="clave">Repetir clave</label>
 				    <input type="password" class="form-control" name="clave2" id="clave2" placeholder="Clave">
-				  </div>
-				</form>
+				  </div>-->
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
 		        <button type="submit" class="btn btn-warning pull-right">Registrarse</button>
 		      </div>
+		      </form>
 		    </div>
 		  </div>
 		</div>
