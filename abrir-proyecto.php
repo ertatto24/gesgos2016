@@ -27,8 +27,9 @@
 				require 'sys/conexion.php';
 				$db = getConexion();
 
-				$stmt = $db->prepare("SELECT proyecto.descripcion AS descripcion, proyecto.id AS proyecto, proyecto.nombre AS nombre, proyecto.fecha_inicio AS fecha_inicio, proyecto.fecha_final AS fecha_final, tipo_proyecto.nombre AS tipo FROM proyecto, tipo_proyecto WHERE proyecto.id = ? AND proyecto.tipo = tipo_proyecto.id LIMIT 1");
+				$stmt = $db->prepare("SELECT proyecto.descripcion AS descripcion, proyecto.id AS proyecto, proyecto.nombre AS nombre, proyecto.fecha_inicio AS fecha_inicio, proyecto.fecha_final AS fecha_final, tipo_proyecto.nombre AS tipo FROM proyecto, tipo_proyecto WHERE proyecto.id = ? AND usuario = ? AND proyecto.tipo = tipo_proyecto.id LIMIT 1");
 				$stmt->bindParam(1, $id, PDO::PARAM_INT);
+				$stmt->bindParam(2, $_SESSION['usuario']);
 				$stmt->execute();
 				$proyecto = $stmt->fetchObject();
 
@@ -60,6 +61,8 @@
 							<textarea class="form-control" rows="6" id="exampleInputAmount" placeholder="" readonly><?php echo $proyecto->descripcion; ?></textarea>
 						</div>
 					</div>
+
+					<hr>
 
 					meter más info como los riesgos,etc
 

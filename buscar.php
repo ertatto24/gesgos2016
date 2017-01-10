@@ -14,13 +14,13 @@
 			<ol class="breadcrumb">
 			  <li><a href="index.php">Inicio</a></li>
 			  <li><a href="#">Proyectos</a></li>
-			  <li><a href="#">Listar proyectos</a></li>
+			  <li><a href="#">Buscar proyectos</a></li>
 			  <span class="pull-right"><?php getFecha(); ?></span>
 			</ol>
 
 			<div class="panel panel-default">
 			  <div class="panel-body">
-			  	<h2 class="text-center">Listar proyectos</h2>
+			  	<h2 class="text-center">Buscar proyectos</h2>
 				<div class="row">
 					<div class="col-md-12 table-responsive">
 
@@ -39,8 +39,12 @@
 							require 'sys/conexion.php';
 							$db = getConexion();
 
-							$stmt = $db->prepare("SELECT id, nombre FROM proyecto WHERE usuario = ?");
-							$stmt->bindParam(1, $_SESSION['usuario']);
+							$busca = $_POST['buscar'];
+							$like = "%".$busca."%";
+
+							$stmt = $db->prepare("SELECT id, nombre FROM proyecto WHERE nombre LIKE ? AND usuario = ?");
+							$stmt->bindParam(1, $like);
+							$stmt->bindParam(2, $_SESSION['usuario']);
 							$stmt->execute();
 							$proyecto = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

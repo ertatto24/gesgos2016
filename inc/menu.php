@@ -112,9 +112,9 @@
 		  </div>
 		</div>
 
-      <form class="navbar-form navbar-right">
+      <form class="navbar-form navbar-right" action="buscar.php" method="post">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Buscar..">
+          <input type="text" name="buscar" class="form-control" placeholder="Buscar..">
         </div>
       </form>
     </div>
