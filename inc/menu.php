@@ -24,7 +24,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-exclamation-triangle"></i> Riesgos <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="crear-riesgo.php"><i class="fa fa-download"></i> Crear nuevo riesgo</a></li>
+            <li><a href="estadisticas.php"><i class="fa fa-download"></i> Estadísticas</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="listar-riesgos.php"><i class="fa fa-list-ul"></i> Listar riesgos</a></li>
           </ul>
@@ -43,7 +43,7 @@
             <li role="separator" class="divider"></li>
             <li><a href="#"><i class="fa fa-key"></i> Recuperar contraseña</a></li>
             <?php } else { ?>
-            <li><a href=""><i class="fa fa-user"></i> <?php echo $_SESSION['nombre']; ?></a></li>
+            <li><a href="perfil.php"><i class="fa fa-user"></i> <?php echo $_SESSION['nombre']; ?></a></li>
             <li><a href="ctl/ctl.salir.php"><i class="fa fa-power-off"></i> Salir</a></li>
             <?php } ?>
           </ul>

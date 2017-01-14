@@ -42,37 +42,9 @@
 								</td>
 								<td>
 									<a class="btn btn-info btn-xs" href="#" data-id="1" class="abrirProyecto"><i class="fa fa-file-o"></i> Informe</a>
-									<a class="btn btn-warning btn-xs" href="#" data-id="1" class="modificarProyecto"><i class="fa fa-file-text-o"></i> Post-Informe</a>
+									<a class="btn btn-warning btn-xs" href="#" data-id="1" class="modificarProyecto"><i class="fa fa-file-text-o"></i> Post-Mortem</a>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									#1
-								</td>
-								<td>
-									nombre proyecto 11
-								</td>
-								<td>
-									<a class="btn btn-info btn-xs" href="#"><i class="fa fa-folder-open-o"></i> Abrir proyecto</a>
-									<a class="btn btn-warning btn-xs" href="#"><i class="fa fa-pencil-square-o"></i> Modificar proyecto</a>
-									<a class="btn btn-danger btn-xs" href="#"><i class="fa fa-eraser"></i> Borrar proyecto</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									#1
-								</td>
-								<td>
-									nombre proyecto 33
-								</td>
-								<td>
-									<a class="btn btn-info btn-xs" href="#"><i class="fa fa-folder-open-o"></i> Abrir proyecto</a>
-									<a class="btn btn-warning btn-xs" href="#"><i class="fa fa-pencil-square-o"></i> Modificar proyecto</a>
-									<a class="btn btn-danger btn-xs" href="#"><i class="fa fa-eraser"></i> Borrar proyecto</a>
-								</td>
-							</tr>
-
-						<?php //getListadoServiciosFranquicia($_SESSION['franquicia']); ?>
 
 						</tbody>
 							<tfoot>

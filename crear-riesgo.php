@@ -17,17 +17,31 @@
 			  <span class="pull-right"><?php getFecha(); ?></span>
 			</ol>
 
-			<div class="panel panel-default">
+			<div class="panel panel-default qabre" style="display: none;">
+				¿Añadir otro riesgo a este proyecto?<br>
+				<a href="crear-riesgo.php?id=<?php echo $_GET['id']; ?>" class="btn btn-default">Si</a>
+				<a href="listar-proyectos.php" class="btn btn-default">No</a>
+			</div>
+			<div class="panel panel-default qcierra">
 			  <div class="panel-body">
 			  	<h2 class="text-center">Crear riesgo nuevo</h2>
-			  	<?php $idp = $_GET['id']; ?>
-			  	<h5 class="text-center"><span class="label label-success">Asociado al proyecto gfsgsd</span></h5>
-			  	<div class="alert alert-danger" role="alert" id="errorjs" style="display: none;">Por favor, rellena los campos.</div>
-				<form class="form-horizontal" action="ctl/ctl.postCrearProyecto.php" method="post">
+			  	<?php 
+			  	$idp = $_GET['id']; 
+			  	require 'sys/conexion.php';
+				$db = getConexion();
+				$stmt = $db->prepare("SELECT nombre FROM proyecto WHERE id = ? LIMIT 1");
+				$stmt->bindParam(1, $idp);
+				$stmt->execute();
+				$proye = $stmt->fetchObject();
+			  	?>
+			  	<h5 class="text-center"><span class="label label-success">Asociado al proyecto <?php echo $proye->nombre; ?></span></h5>
+			  	<div class="alert alert-danger" role="alert" id="errorNRiesgo" style="display: none;">Por favor, rellena los campos.</div>
+				<form class="form-horizontal" id="enviarCrearRiesgo">
+				<input type="hidden" name="id" value="<?php echo $idp; ?>">
 				  <div class="form-group">
 				    <label for="nombreProyecto" class="col-sm-4 control-label">Nombre riesgo</label>
 				    <div class="col-sm-6">
-				      <input type="text" name="nombreRiesgo" class="form-control" id="nombreProyecto" placeholder="Nombre del riesgo">
+				      <input type="text" name="nombreRiesgo" class="form-control" id="nombreRiesgo" placeholder="Nombre del riesgo">
 				    </div>
 				  </div>
 				  <div class="form-group">
@@ -70,25 +84,25 @@
 				  <div class="form-group">
 				    <label for="descripcion" class="col-sm-4 control-label">Descripción del riesgo</label>
 				    <div class="col-sm-6">
-				      <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="8"></textarea>
+				      <textarea class="form-control" name="descripcionRiesgo" id="descripcionRiesgo" placeholder="Descripción del riesgo" rows="6"></textarea>
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label for="descripcion" class="col-sm-4 control-label">Factores que influyen</label>
 				    <div class="col-sm-6">
-				      <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="8"></textarea>
+				      <textarea class="form-control" name="factores" id="factores" placeholder="Factores que influyen" rows="6"></textarea>
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label for="descripcion" class="col-sm-4 control-label">Reducción del riesgo</label>
 				    <div class="col-sm-6">
-				      <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="8"></textarea>
+				      <textarea class="form-control" name="reduccion" id="reduccion" placeholder="Reducción del riesgo" rows="6"></textarea>
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label for="descripcion" class="col-sm-4 control-label">Supervisión del riesgo</label>
 				    <div class="col-sm-6">
-				      <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción" rows="8"></textarea>
+				      <textarea class="form-control" name="supervision" id="supervision" placeholder="Supervisión del riesgo" rows="6"></textarea>
 				    </div>
 				  </div>
 

@@ -20,7 +20,8 @@
 			<div class="panel panel-default">
 			  <div class="panel-body">
 			  	<h2 class="text-center">Crear proyecto nuevo</h2>
-				<form class="form-horizontal" action="ctl/ctl.postCrearProyecto.php" method="post">
+			  	<div class="alert alert-danger" role="alert" id="errorNProyecto" style="display: none;">Por favor, rellena los campos.</div>
+				<form class="form-horizontal" id="formNuevoProyecto">
 				  <div class="form-group">
 				    <label for="nombreProyecto" class="col-sm-4 control-label">Nombre proyecto</label>
 				    <div class="col-sm-6">
@@ -80,7 +81,7 @@
 				  <div class="form-group">
 				    <div class="col-sm-offset-5 col-sm-10">
 					    <button type="reset" class="btn btn-default">Cancelar</button>
-					    <button type="submit" class="btn btn-warning">Guardar</button>
+					    <button type="submit" class="btn btn-warning" id="dd">Guardar</button>
 				    </div>
 				  </div>
 				</form>

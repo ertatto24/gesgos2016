@@ -29,7 +29,7 @@
 								<tr>
 									<th>ID</th>
 									<th>Proyecto</th>
-									<th>Acciones</th>
+									<th width="15%">Acciones</th>
 								</tr>
 							</thead>
 						<tbody>
@@ -48,9 +48,11 @@
 
 							foreach ($proyecto as $p) {
 								$mensaje .= "<tr><td>#".$p['id']."</td><td>".$p['nombre']."</td>";
-								$mensaje .= "<td><a class='btn btn-info btn-xs' href='abrir-proyecto.php?id=".$p['id']."' data-id='".$p['id']."'><i class='fa fa-folder-open-o'></i> Abrir</a>";
-								$mensaje .= " <a class='btn btn-warning btn-xs' href='#' data-id='".$p['id']."'><i class='fa fa-pencil-square-o'></i> Modificar</a>";
-								$mensaje .= " <a class='btn btn-danger btn-xs' href='#' data-id='".$p['id']."'><i class='fa fa-eraser'></i> Borrar</a></td></tr>";
+								$mensaje .= "<td><a class='btn btn-info btn-xs' href='abrir-proyecto.php?id=".$p['id']."' data-id='".$p['id']."' data-toggle='tooltip' data-placement='top' title='Abrir el proyecto'><i class='fa fa-folder-open-o'></i></a>";
+								$mensaje .= " <a class='btn btn-success btn-xs' href='crear-riesgo.php?id=".$p['id']."' data-id='".$p['id']."' data-toggle='tooltip' data-placement='top' title='Crear riesgos y asociar'><i class='fa fa-warning'></i></a>";
+								$mensaje .= " <a class='btn btn-primary btn-xs' href='linea-corte.php?id=".$p['id']."' data-id='".$p['id']."' data-toggle='tooltip' data-placement='top' title='Definir línea de corte del proyecto'><i class='fa fa-random'></i></a>";
+								$mensaje .= " <a class='btn btn-warning btn-xs' href='#' data-id='".$p['id']."' data-toggle='tooltip' data-placement='top' title='Editar el proyecto'><i class='fa fa-pencil-square-o'></i></a>";
+								$mensaje .= " <a class='btn btn-danger btn-xs' href='#' data-id='".$p['id']."' data-toggle='tooltip' data-placement='top' title='Eliminar el proyecto'><i class='fa fa-eraser'></i></a></td></tr>";
 							}
 
 							echo $mensaje;

@@ -21,13 +21,13 @@ $stmt->bindParam(7, $fecha);
 $stmt->execute();
 $comprobacion = $stmt->rowCount();
 
-if ($comprobacion == 1) {
+/*if ($comprobacion == 1) {
 
-	header('Location: ../listar-proyectos.php');
+	//header('Location: ../listar-proyectos.php');
 	exit;
 
 } else {
 
-	header('Location: ../index.php');
+	//header('Location: ../index.php');
 	exit;		
-}
+}*/

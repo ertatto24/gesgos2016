@@ -17,13 +17,13 @@
 			<ol class="breadcrumb">
 			  <li><a href="index.php">Inicio</a></li>
 			  <li><a href="#">Proyectos</a></li>
-			  <li><a href="#">Abrir proyecto</a></li>
+			  <li><a href="#">Línea de corte</a></li>
 			  <span class="pull-right"><?php getFecha(); ?></span>
 			</ol>
 
 			<div class="panel panel-default">
 			  <div class="panel-body">
-			  	<h2 class="text-center">Abrir proyecto</h2>
+			  	<h2 class="text-center">Línea de corte</h2>
 
 				<?php
 
@@ -70,7 +70,7 @@
 
 					<?php
 
-					$stmt = $db->prepare("SELECT riesgo.id AS id, riesgo.nombre AS riesgo, riesgo.probabilidad AS probabilidad, riesgo.descripcion AS descripcion, categoria_riesgo.nombre AS categoria, tipo_riesgo.nombre AS tipo, impacto_riesgo.nombre AS impacto FROM riesgo, proyecto_riesgo, impacto_riesgo, tipo_riesgo, categoria_riesgo WHERE proyecto_riesgo.proyecto = ? AND proyecto_riesgo.riesgo = riesgo.id AND riesgo.categoria = categoria_riesgo.id AND riesgo.tipo = tipo_riesgo.id AND riesgo.impacto = impacto_riesgo.id ORDER BY proyecto_riesgo.posicion ASC");
+					$stmt = $db->prepare("SELECT riesgo.id AS id, riesgo.nombre AS riesgo, riesgo.probabilidad AS probabilidad, riesgo.descripcion AS descripcion, categoria_riesgo.nombre AS categoria, tipo_riesgo.nombre AS tipo, impacto_riesgo.nombre AS impacto FROM riesgo, proyecto_riesgo, impacto_riesgo, tipo_riesgo, categoria_riesgo WHERE proyecto_riesgo.proyecto = ? AND proyecto_riesgo.riesgo = riesgo.id AND riesgo.categoria = categoria_riesgo.id AND riesgo.tipo = tipo_riesgo.id AND riesgo.impacto = impacto_riesgo.id ORDER BY riesgo.probabilidad DESC");
 					$stmt->bindParam(1, $id, PDO::PARAM_INT);
 					//$stmt->bindParam(2, $_SESSION['usuario']);
 					$stmt->execute();
@@ -80,31 +80,25 @@
 						echo "Todavía no se han asociado riesgos al proyecto.";
 					} else { ?>
 
-					<table width="100%">
-						<tr style="background-color:#047668;color:#FFFFFF;">
-							<th>Riesgo</th>
-							<th>%</th>
-							<th>Categoría</th>
-							<th>Tipo</th>
-							<th>Impacto</th>
-						</tr>
-					<?php
+						<div class="alert alert-info" role="alert">Nombre del riesgo [probabilidad] (impacto)</div>
 
-					
+					<div id="ina">
+						<ul id="sortable2">
+						<li class="ui-state-default" style="width:100%;background-color:pink;" id="0">Línea de corte</li>
+						
+						<?php
 						foreach ($riesgosProyecto as $r) {
-							echo "<tr><td><i class='fa fa-'></i>".$r['riesgo']."</td>";
-							echo "<td>".$r['probabilidad']."</td>";
-							echo "<td>".$r['categoria']."</td>";
-							echo "<td>".$r['tipo']."</td>";
-							echo "<td>".$r['impacto']."</td></tr>";
-							echo "<tr style='background-color:#E0E0E0;'><td colspan='5'>".$r['descripcion']."</td></tr>";
+							echo '<li class="ui-state-default" style="width:100%;" id="'.$r['id'].'">'.$r['riesgo'].' ['.$r['probabilidad'].'] ('.$r['impacto'].')</li>';
 						}
-					?>
+						?>
+						</ul>
 
-				
+						<span id="lineaCorte" class="btn btn-warning" style="margin-top: 14px;">Asociar línea de corte</span>
+					</div>
+
 
 					<?php } ?>
-					</table>
+
 			  </div>
 			</div>
 
